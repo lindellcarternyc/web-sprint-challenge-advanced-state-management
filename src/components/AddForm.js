@@ -26,7 +26,10 @@ const AddForm = ({ errorMessage, setError, addSmurf }) => {
             setError("Name, position and nickname fields are required.")
         }
         
-        addSmurf({...state, id: `${new Date()}`})
+        addSmurf({...state, 
+          // Add ID just to get rid of React rendering errors
+          id: `${new Date()}`}
+        )
         setState(INITIAL_STATE)
     }
 
