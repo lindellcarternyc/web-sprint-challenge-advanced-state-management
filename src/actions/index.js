@@ -9,8 +9,6 @@ export const FETCH_SMURFS_ATTEMPT = 'FETCH_SMURFS_ATTEMPT'
 export const FETCH_SMURFS_SUCCESS = 'FETCH_SMURFS_SUCCESS'
 export const FETCH_SMURFS_FAILURE = 'FETCH_SMURFS_FAILURE'
 
-export const ADD_SMURF = 'ADD_SMURF'
-
 export const fetchSmurfsAttempt = () => ({
   type: FETCH_SMURFS_ATTEMPT
 })
@@ -36,3 +34,15 @@ export const fetchSmurfs = () => (dispatch) => {
       dispatch(fetchSmurfsFailure(JSON.stringify(err)))
     })
 }
+
+export const SET_ERROR = 'SET_ERROR'
+export const setError = (message) => ({
+  type: SET_ERROR,
+  payload: message
+})
+
+export const ADD_SMURF = 'ADD_SMURF'
+export const addSmurf = (smurf) => ({
+  type: ADD_SMURF,
+  payload: smurf
+})

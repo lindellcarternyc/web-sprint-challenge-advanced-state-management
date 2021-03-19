@@ -1,21 +1,23 @@
 import {
   FETCH_SMURFS_ATTEMPT, FETCH_SMURFS_FAILURE, FETCH_SMURFS_SUCCESS,
-  ADD_SMURF
+  ADD_SMURF,
+  SET_ERROR
 } from '../actions'
 
 export const initialState = {
   smurfs: [],
   isLoading: false,
-  error: null
+  errorMessage: null
 }
 
 const reducer = (state = initialState, action)=>{
+  console.log(action.type)
   switch (action.type) {
     case FETCH_SMURFS_ATTEMPT: {
       return {
         ...state,
         isLoading: true,
-        error: null
+        errorMessage: null
       }
     }
     case FETCH_SMURFS_SUCCESS: {
@@ -23,20 +25,27 @@ const reducer = (state = initialState, action)=>{
         ...state,
         isLoading: false,
         smurfs: action.payload,
-        error: null
+        errorMessage: null
       }
     }
     case FETCH_SMURFS_FAILURE: {
       return {
         ...state,
         isLoading: false,
-        error: action.payload
+        errorMessage: action.payload
       }
     }
     case ADD_SMURF: {
+      console.log('ADD SMURF')
       return {
         ...state,
         smurfs: [...state.smurfs, action.payload]
+      }
+    }
+    case SET_ERROR: {
+      return {
+        ...state,
+        errorMessage: action.payload
       }
     }
     default: {
